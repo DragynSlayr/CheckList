@@ -1,0 +1,32 @@
+﻿<Window x:Class="CheckList.EditDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CheckList"
+        mc:Ignorable="d"
+        d:DesignHeight="100" d:DesignWidth="500"
+        Title="EditDialog" WindowStyle="None" Background="#393939" SizeToContent="WidthAndHeight" MouseDown="Window_MouseDown">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBox x:Name="TaskBox" Grid.Row="0" Text="Task Description" Margin="2" GotFocus="TaskBox_GotFocus" LostFocus="TaskBox_LostFocus" Foreground="LightSlateGray"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <DatePicker x:Name="Date" Grid.Column="0" Margin="2"/>
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="DenyButton" Grid.Column="0" Content="Cancel" Background="Red" Margin="2"/>
+                <Button x:Name="ConfirmButton" Grid.Column="1" Content="Confirm" Background="LawnGreen" Margin="2"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
