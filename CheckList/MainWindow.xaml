@@ -4,28 +4,31 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CheckList"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
-        Title="MainWindow" WindowStyle="None" SizeToContent="WidthAndHeight" Background="#393939" MouseDown="Window_MouseDown">
+        mc:Ignorable="d" d:DesignHeight="300"
+        Title="MainWindow" WindowStyle="None" Background="#393939" MaxHeight="500" SizeToContent="WidthAndHeight" MouseDown="Window_MouseDown">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.05*"/>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Background="LightCyan">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.05*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="0.05*"/>
-                <ColumnDefinition Width="0.05*"/>
-            </Grid.ColumnDefinitions>
-            <Label x:Name="Title" Grid.Column="1" Content="CheckList" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20"/>
-            <Button x:Name="AddButton" Grid.Column="0" Content="+" Background="LightSeaGreen" Margin="3,3,3,3" Click="AddButton_Click"/>
-            <Button x:Name="MinButton" Grid.Column="2" Content="-" Background="LightSkyBlue" Margin="0,2,1,2" Click="MinButton_Click"/>
-            <Button x:Name="CloseButton" Grid.Column="3" Content="X" Background="IndianRed" Margin="1,2,1,2" Click="CloseButton_Click"/>
-        </Grid>
+        <UniformGrid Grid.Row="0" Background="LightCyan" Columns="10">
+            <Button x:Name="AddButton" Width="25" Height="25" Content="+" Background="LightSeaGreen" Margin="2,2,2,2" Click="AddButton_Click"/>
+            <Rectangle/>
+            <Rectangle/>
+            <Rectangle/>
+            <Rectangle/>
+            <Rectangle/>
+            <Rectangle/>
+            <Rectangle/>
+            <Button x:Name="MinButton" Width="25" Height="25" Content="-" Background="LightSkyBlue" Margin="2,2,2,2" Click="MinButton_Click"/>
+            <Button x:Name="CloseButton" Width="25" Height="25" Content="X" Background="IndianRed" Margin="2,2,2,2" Click="CloseButton_Click"/>
+        </UniformGrid>
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-            <StackPanel x:Name="Items"/>
+            <StackPanel>
+                <StackPanel x:Name="Items"/>
+                <Rectangle Height="10" Fill="Red"/>
+                <StackPanel x:Name="Finished"/>
+            </StackPanel>
         </ScrollViewer>
     </Grid>
-
 </Window>

@@ -19,12 +19,21 @@ namespace CheckList {
     /// </summary>
     public partial class MainWindow : Window {
 
+        private int counter;
+
         public MainWindow() {
             InitializeComponent();
+
+            counter = 0;
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e) {
-
+            string s = "";
+            for (int i = 0; i < (10 + counter); i++) {
+                s += counter + "";
+            }
+            Items.Children.Add(new ListItem(this, s));
+            counter++;
         }
 
         private void MinButton_Click(object sender, RoutedEventArgs e) {
