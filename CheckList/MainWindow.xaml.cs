@@ -19,15 +19,34 @@ namespace CheckList {
     /// </summary>
     public partial class MainWindow : Window {
 
+        public bool EditResult;
+        public string EditString;
+        public DateTime EditDate;
+
         public MainWindow() {
             InitializeComponent();
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e) {
-            EditDialog d = new EditDialog();
+            EditDialog d = new EditDialog(this);
             d.Owner = this;
             d.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            d.Show();
+            d.ShowDialog();
+            if (EditResult) {
+                Items.Children.Add(new ListItem(this, EditString, EditDate));
+                List<ListItem> items = new List<ListItem>();
+                foreach (UIElement ui in Items.Children) {
+                    ListItem l = ui as ListItem;
+                    if (l != null) {
+                        items.Add(l);
+                    }
+                }
+                items.Sort(ListItem.CompareListItem);
+                Items.Children.Clear();
+                foreach (ListItem l in items) {
+                    Items.Children.Add(l);
+                }
+            }
         }
 
         private void MinButton_Click(object sender, RoutedEventArgs e) {

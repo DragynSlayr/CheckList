@@ -20,12 +20,16 @@ namespace CheckList {
 
         private string startString;
         private Brush startBrush;
+        private MainWindow window;
+        private static string[] MONTHS = new string[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
 
-        public EditDialog() {
+        public EditDialog(MainWindow Window) {
             InitializeComponent();
 
+            window = Window;
             startString = TaskBox.Text.ToString();
             startBrush = TaskBox.Foreground;
+            Date.SelectedDate = DateTime.Today;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e) {
@@ -46,6 +50,23 @@ namespace CheckList {
                 TaskBox.Text = startString;
                 TaskBox.Foreground = startBrush;
             }
+        }
+
+        private void DenyButton_Click(object sender, RoutedEventArgs e) {
+            window.EditResult = false;
+            Close();
+        }
+
+        private void ConfirmButton_Click(object sender, RoutedEventArgs e) {
+            string s = TaskBox.Text + " by " + TimePicker.GetTime() + " on ";
+            DateTime? d = Date.SelectedDate;
+            DateTime date = d ?? DateTime.Today;
+            s += MONTHS[date.Month - 1] + " " + date.Day + ", " + date.Year;
+
+            window.EditString = s;
+            window.EditResult = true;
+            window.EditDate = new DateTime(date.Year, date.Month, date.Day, TimePicker.TimeHour, TimePicker.TimeMinute, 0);
+            Close();
         }
     }
 }

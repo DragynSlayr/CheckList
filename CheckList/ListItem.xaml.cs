@@ -17,15 +17,18 @@ namespace CheckList {
     /// <summary>
     /// Interaction logic for ListItem.xaml
     /// </summary>
+    [Serializable]
     public partial class ListItem : UserControl {
 
         private MainWindow window;
         private Brush normal, finished;
+        public DateTime date;
 
-        public ListItem(MainWindow Window, string Text) {
+        public ListItem(MainWindow Window, string Text, DateTime Date) {
             InitializeComponent();
 
             window = Window;
+            date = Date;
             Task.Text = Text;
             normal = BG.Fill;
             finished = new SolidColorBrush(Color.FromRgb(75, 75, 75));
@@ -41,6 +44,10 @@ namespace CheckList {
             window.Finished.Children.Remove(this);
             window.Items.Children.Add(this);
             BG.Fill = normal;
+        }
+
+        public static int CompareListItem(ListItem li1, ListItem li2) {
+            return li1.date.CompareTo(li2.date);
         }
     }
 }
